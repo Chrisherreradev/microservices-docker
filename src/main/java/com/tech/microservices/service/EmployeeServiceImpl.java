@@ -1,5 +1,6 @@
 package com.tech.microservices.service;
 
+import com.tech.microservices.exception.EmployeeNotFoundException;
 import com.tech.microservices.model.Employee;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public List<Employee> getAllEmployees() {
         return employees;
+    }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return employees.stream().filter(employee -> employee.getEmployeeId()==id)
+                .findFirst()
+                .orElseThrow(()->new EmployeeNotFoundException("Employee not found with id " + id));
     }
 }
