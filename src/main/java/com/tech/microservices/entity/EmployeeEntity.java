@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 @Getter
 @Setter
@@ -21,6 +22,7 @@ public class EmployeeEntity {
     private Long employeeId;
     private String firstName;
     private String lastName;
+    @Email(message = "Email format is incorrect")
     private String email;
     private String department;
 }
